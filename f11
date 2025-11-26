@@ -1,0 +1,13 @@
+# Simple Python code with a vulnerability: Insecure use of eval()
+# This function evaluates user input as Python code, which can lead to code injection attacks.
+
+def calculate_expression(user_input):
+    try:
+        result = eval(user_input)  # Vulnerability: eval() executes arbitrary code
+        return f"Result: {result}"
+    except Exception as e:
+        return f"Error: {e}"
+
+# Example usage (do not run with untrusted input!)
+print(calculate_expression("2 + 3"))  # Safe: outputs "Result: 5"
+# print(calculate_expression("__import__('os').system('ls')"))  # Dangerous: executes shell command
